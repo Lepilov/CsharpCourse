@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork1
 {
@@ -10,42 +6,56 @@ namespace HomeWork1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите три числа");
+            int[] n = new int[3];
 
-            Console.Write("Введите 1 число: ");
-            int a = Int32.Parse(Console.ReadLine());
-            Console.Write("Введите 2 число: ");
-            int b = Int32.Parse(Console.ReadLine());
-            Console.Write("Введите 3 число: ");
-            int c = Int32.Parse(Console.ReadLine());
-
-            if (a <= b && a <= c)
+            for (int i = 0; i < n.Length; i++)
             {
-                Console.WriteLine("Наименьшее число: {0}", a);
-            }
-            else if (b <= a && b <= c)
-            {
-                Console.WriteLine("Наименьшее число: {0}", b);
-            }
-            else
-            {
-                Console.WriteLine("Наименьшее число: {0}", c);
-            }
-
-            Fibonacci(a);
-            Fibonacci(b);
-            Fibonacci(c);
-            void Fibonacci(int n)
-            {
-                int r, r1 = 1, r2 = 0; 
-                for (r = 1; ;r++)
+                try
                 {
-                    r = r1 + r2;
-                    if (r >= n)
-                        break;
-                    r1 = r2;
-                    r2 = r;
-                    Console.Write("{0}  ", r);
+                    Console.Write("Введите {0} число: ", i + 1);
+                    n[i] = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Введите число!");
+                    i--;
+                }
+            }
+
+            int min = n[0];
+            for (int i = 0; i < n.Length; i++)
+            {
+                if (n[i] < min)
+                {
+                    min = n[i];
+                }
+            }
+            Console.WriteLine("Наименьшее число: {0}", min);
+
+            Fib(n);
+            void Fib(int[] array)
+            {
+                int value;
+                for (int i = 0; i < array.Length; i++)
+                {
+                    value = array[i];
+                    Fibonacci(value);
+                }
+            }
+
+
+            void Fibonacci(int value)
+            {
+                int a = 1, b = 1;
+                Console.Write(a + " " + b);
+                int fib = 2, i = 2;
+                while (i < value)
+                {
+                    fib = a + b;
+                    a = b;
+                    b = fib;
+                    Console.Write(" " + fib);
+                    i++;
                 }
                 Console.WriteLine();
             }
