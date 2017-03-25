@@ -10,7 +10,7 @@ namespace Common
     {
         public static bool TryEnterNumberFromConsole(out uint number)
         {
-            Console.Write("Ведите число : ");
+            Console.Write("Введите число : ");
             string number1AsString = Console.ReadLine();
 
             if (!(uint.TryParse(number1AsString, out number)))
