@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,6 @@ namespace Lesson1
 {
     class Program
     {
-        static bool TryEnterNumberFromConsole(out uint number)
-        {
-            Console.Write("Ведите число : ");
-            string number1AsString = Console.ReadLine();
-
-            if (!(uint.TryParse(number1AsString, out number)))
-            {
-                Console.Write("Ввели не число");
-                return false;
-            }
-
-            return true;
-        }
-
         static void PrintFibNumberLessThanNumber(uint number)
         {
 
@@ -50,9 +37,9 @@ namespace Lesson1
         {
 
             uint number1, number2, number3;
-            if (!TryEnterNumberFromConsole(out number1)|| 
-                !TryEnterNumberFromConsole(out number2)|| 
-                !TryEnterNumberFromConsole(out number3))
+            if (!Utils.TryEnterNumberFromConsole(out number1)|| 
+                !Utils.TryEnterNumberFromConsole(out number2)|| 
+                !Utils.TryEnterNumberFromConsole(out number3))
             {
                 Console.Read();
                 return;
