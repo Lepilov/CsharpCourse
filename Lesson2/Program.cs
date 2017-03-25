@@ -12,12 +12,12 @@ namespace Lesson2
         static void Main(string[] args)
         {
             uint arrayLength;
-            Utils.TryEnterNumberFromConsole(out arrayLength);
-            /*if (!Utils.TryEnterNumberFromConsole(out arrayLength))
+            //Utils.TryEnterNumberFromConsole(out arrayLength);
+            if (!Utils.TryEnterNumberFromConsole(out arrayLength))
             {
                 Console.Read();
                 return;
-            }*/
+            }
 
             double[] array = new double[arrayLength];
             Random random = new Random();
