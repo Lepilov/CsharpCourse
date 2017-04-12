@@ -4,30 +4,31 @@ namespace HomeWork6
 {
     public class Matrix
     {
-        public uint NumberOfRows { get; private set; }
-        public uint NumberOfCols { get; private set; }
-        private double[,] matrix;
-        private double determinant;
+        public uint NumberOfRows { get;  set; }
+        public uint NumberOfCols { get;  set; }
+        private int[,] matrix;
 
         public Matrix(uint numberOfRows, uint numberOfCols)
         {
             NumberOfRows = numberOfRows;
             NumberOfCols = numberOfCols;
-            matrix = new double[numberOfRows, numberOfCols];
+            DataMatrix();
         }
 
-        public Matrix(double[,] matrix)
+        protected virtual void DataMatrix()
         {
-            this.NumberOfRows = (uint) matrix.GetLength(0);
-            this.NumberOfCols = (uint) matrix.GetLength(1);
-            this.matrix = matrix;
+            matrix = new int[NumberOfRows, NumberOfCols];
+            Random random = new Random();
+            for (uint i = 0; i < NumberOfRows; i++)
+            {
+                for (uint j = 0; j < NumberOfCols; j++)
+                {
+                    this[i, j] = random.Next(1, 4);
+                }
+            }
         }
 
-        public Matrix()
-        {
-        }
-
-        public double this[uint i, uint j]
+        public virtual int this[uint i, uint j]
         {
             get { return matrix[i, j]; }
             set { matrix[i, j] = value; }
@@ -35,23 +36,19 @@ namespace HomeWork6
 
         public static Matrix operator +(Matrix firstMatrix, Matrix secondMatrix)
         {
-            if (Equals(firstMatrix.NumberOfRows, secondMatrix.NumberOfRows) &&
-                Equals(firstMatrix.NumberOfCols, secondMatrix.NumberOfCols))
+            Matrix resultAdditionOfTwoMatrices = new Matrix(firstMatrix.NumberOfRows, secondMatrix.NumberOfCols);
+            for (uint i = 0; i < resultAdditionOfTwoMatrices.NumberOfRows; i++)
             {
-                Matrix resultAdditionOfTwoMatrices = new Matrix(firstMatrix.NumberOfRows, secondMatrix.NumberOfCols);
-                for (uint i = 0; i < resultAdditionOfTwoMatrices.NumberOfRows; i++)
+                for (uint j = 0; j < resultAdditionOfTwoMatrices.NumberOfCols; j++)
                 {
-                    for (uint j = 0; j < resultAdditionOfTwoMatrices.NumberOfCols; j++)
-                    {
-                        resultAdditionOfTwoMatrices[i, j] = firstMatrix[i, j] + secondMatrix[i, j];
-                    }
+                    resultAdditionOfTwoMatrices[i, j] = firstMatrix[i, j] + secondMatrix[i, j];
                 }
-                return resultAdditionOfTwoMatrices;
             }
-            throw new Exception("Матрицы должны быть одинаковы!");
+
+            return resultAdditionOfTwoMatrices;
         }
 
-        public static Matrix operator +(Matrix firstMatrix, double number)
+        public static Matrix operator +(Matrix firstMatrix, int number)
         {
             Matrix resultAdditionOfMatrixToNumber = new Matrix(firstMatrix.NumberOfRows, firstMatrix.NumberOfCols);
             for (uint i = 0; i < resultAdditionOfMatrixToNumber.NumberOfRows; i++)
@@ -67,27 +64,22 @@ namespace HomeWork6
 
         public static Matrix operator *(Matrix firstMatrix, Matrix secondMatrix)
         {
-            if (Equals(firstMatrix.NumberOfCols, secondMatrix.NumberOfRows))
+            Matrix resultMatrixMultiplications = new Matrix(firstMatrix.NumberOfRows, secondMatrix.NumberOfCols);
+            for (uint i = 0; i < resultMatrixMultiplications.NumberOfRows; i++)
             {
-                Matrix resultMatrixMultiplications = new Matrix(firstMatrix.NumberOfRows, secondMatrix.NumberOfCols);
-                for (uint i = 0; i < resultMatrixMultiplications.NumberOfRows; i++)
+                for (uint j = 0; j < resultMatrixMultiplications.NumberOfCols; j++)
                 {
-                    for (uint j = 0; j < resultMatrixMultiplications.NumberOfCols; j++)
+                    for (uint r = 0; r < secondMatrix.NumberOfCols; r++)
                     {
-                        for (uint r = 0; r < secondMatrix.NumberOfCols; r++)
-                        {
-                            resultMatrixMultiplications[i, j] += firstMatrix[i, r] * secondMatrix[r, j];
-                        }
+                        resultMatrixMultiplications[i, j] += firstMatrix[i, r] * secondMatrix[r, j];
                     }
                 }
-
-                return resultMatrixMultiplications;
             }
 
-            throw new Exception("Матрицы должны быть одинаковы");
+            return resultMatrixMultiplications;
         }
 
-        public static Matrix operator *(Matrix firstMatrix, double number)
+        public static Matrix operator *(Matrix firstMatrix, int number)
         {
             Matrix resultMatrixMultiplicationByNumber = new Matrix(firstMatrix.NumberOfRows, firstMatrix.NumberOfCols);
             for (uint i = 0; i < resultMatrixMultiplicationByNumber.NumberOfRows; i++)
@@ -103,7 +95,7 @@ namespace HomeWork6
 
         public virtual Matrix GetTranspose()
         {
-            double[,] resultTransposeMatrix = new double[NumberOfRows, NumberOfCols];
+            Matrix resultTransposeMatrix = new Matrix(NumberOfRows, NumberOfCols);
             for (uint i = 0; i < NumberOfRows; i++)
             {
                 for (uint j = 0; j < NumberOfCols; j++)
@@ -112,7 +104,7 @@ namespace HomeWork6
                 }
             }
 
-            return new Matrix(resultTransposeMatrix);
+            return resultTransposeMatrix;
         }
 
         public virtual double GetDeterminant()

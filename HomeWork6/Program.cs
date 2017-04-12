@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 
 namespace HomeWork6
 {
@@ -12,19 +11,10 @@ namespace HomeWork6
 
             Console.Write("Ведите кол-во столбцов матрицы : ");
             uint numberOfCols = UInt32.Parse(Console.ReadLine());
-
-            Random random = new Random();
+          
             Matrix firstMatrix = new Matrix(numberOfRows, numberOfCols);
             Matrix secondMatrix = new Matrix(numberOfRows, numberOfCols);
-            for (uint i = 0; i < numberOfRows; i++)
-            {
-                for (uint j = 0; j < numberOfCols; j++)
-                {
-                    firstMatrix[i, j] = random.Next(1, 4);
-                    secondMatrix[i, j] = random.Next(1, 4);
-                }
-            }
-
+            
             Console.WriteLine("Перва матрица : ");
             firstMatrix.PrintMatrix();
 
