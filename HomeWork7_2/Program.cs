@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork7_2
 {
@@ -13,33 +9,64 @@ namespace HomeWork7_2
             Bank bank = new Bank();
 
             bool temp = true;
-            while (temp)
+            while(temp)
             {
-                Console.WriteLine("Если вы хотите устроиться на работу нажмите : \"1\"");
-                Console.WriteLine("Если вы новый клиент банка нажмите : \"2\"");
-                Console.WriteLine("Список сотрудников банка : \"3\"");
-                Console.WriteLine("Для выхода нажмите : \"6\"");
-                int choiceofPosition = Convert.ToInt32(Console.ReadLine());
-                switch (choiceofPosition)
+                Console.WriteLine(" Добро пожаловать в Банк ");
+                Console.Write("Выберите действие: \"1\" - работа с сотрудниками, \"2\" - работа с клиентами, \"0\" - Выход: ");
+                int number = Convert.ToInt32(Console.ReadLine());
+                switch (number)
                 {
                     case 1:
-                        NewEmployee(bank);
+                        Console.WriteLine("Работа с сотрудниками");
+                        Console.Write("Выберите действие: \"1\" - добавить нового сотрудника, \"2\" - поиск сотрудника по имени, \"3\" - получение списка всех сотрудников : ");
+                        int number1 = Convert.ToInt32(Console.ReadLine());
+                        switch (number1)
+                        {
+                            case 1:
+                                Console.WriteLine("Пожалуйста, введите имя сотрудника!");
+                                NewEmployee(bank);
+                                break;
+                            case 2:
+                                bank.FindEmployeeByName();
+                                break;
+                            case 3:
+                                bank.ListOfBankEmployees();
+                                break;
+                            default:
+                                Console.WriteLine("Выбрано некорректное действие!");
+                                break;
+
+                        }
                         break;
                     case 2:
-                        NewClient(bank);
+                        Console.WriteLine("Работа с клиентами");
+                        Console.Write("Выберите действие: \"1\" - обслужить клиента, \"2\" - поиск клиента по имени, \"3\" - получение списка всех клиентов: ");
+                        int number2 = Convert.ToInt32(Console.ReadLine());
+                        switch (number2)
+                        {
+                            case 1:
+                                Console.WriteLine("Пожалуйста, введите имя клиента!");
+                                NewClient(bank);
+                                break;
+                            case 2:
+                                bank.FindCustomerByName();
+                                break;
+                            case 3:
+                                bank.PrintAllClients();
+                                break;
+                            default:
+                                break;
+                        }
                         break;
-                    case 3:
-                        bank.ListOfBankEmployees();
-                        break;
-                    case 6:
+                    case 0:
                         temp = false;
                         continue;
                     default:
-                        Console.WriteLine("Такой команды не существует!");
+                        Console.WriteLine("Такой команды нет!");
                         break;
                 }
             }
-            
+
             Console.Read();
         }
 
@@ -50,19 +77,16 @@ namespace HomeWork7_2
             Console.WriteLine("Кем вы хотите устроиться ?");
             Console.WriteLine("Если вы хотите работать \" кассиром \" то нажмите : \"1\" ");
             Console.WriteLine("Если вы хотите работать \" операционистом \" то нажмите : \"2\" ");
-            //OperationTypes allowedOperationTypes;
             int choiceofPosition = Int32.Parse(Console.ReadLine());
             switch (choiceofPosition)
             {
                 case 1:
                     bank.CreateEmployee(name, OperationTypes.PutMoney | OperationTypes.WithdrawMoney);
-                    Console.WriteLine($"Вы устроились в Банк ваше имя : {name}. Вы можете произвести операцию положить/снять деньги");
-                    //allowedOperationTypes = OperationTypes.PutMoney | OperationTypes.WithdrawMoney;
+                    Console.WriteLine($"Вы устроились в Банк ваше имя : {name}. Вы можете произвести операцию положить/снять деньги");;
                     break;
                 case 2:
                     bank.CreateEmployee(name, OperationTypes.OpenAccount | OperationTypes.CloseAccount);
                     Console.WriteLine($"Вы устроились в Банк ваше имя : {name}. Вы можете открывать/закрывать счет");
-                    //allowedOperationTypes = OperationTypes.OpenAccount | OperationTypes.CloseAccount;
                     break;
                 default:
                     Console.WriteLine("Такой команды не существует!");
@@ -72,18 +96,17 @@ namespace HomeWork7_2
 
         private static void NewClient(Bank bank)
         {
-            Console.WriteLine("Введите имя : ");
+            Console.Write("Введите имя : ");
             string name = Console.ReadLine();
             Console.WriteLine($"Добро пожаловать : {name}");
             bank.CreateAccount(bank.CreateClient(name));
-            bank.CreateAccount(bank.CurrentClient);
             bool temp = true;
             while (temp)
             {
                 Console.WriteLine("Что бы вы хотели сделать :");
                 Console.WriteLine("Положить деньги на счет - \"1\" \t Снять деньги со счета - \"2\"");
                 Console.WriteLine("Открыть новый счет - \"3\" \t Закрыть счет - \"4\"");
-                Console.WriteLine("Выход - \"5\"");
+                Console.WriteLine("Выход - \"0\"");
                 Console.Write("Введите операцию :");
                 int choiceofPosition = Convert.ToInt32(Console.ReadLine());
                 switch (choiceofPosition)
@@ -100,20 +123,19 @@ namespace HomeWork7_2
                     case 4:
                         CloseAccount(bank);
                         break;
-                    case 5:
+                    case 0:
                         temp = false;
                         continue;
                     default:
                         Console.WriteLine("Такой команды не существует!");
                         break;
                 }
-            }
-            
+            }   
         }
 
         private static void AddAccount(Bank bank)
         {
-            //bank.AddAccount();
+            bank.AddAccount(bank.CurrentClient);
         }
 
         private static void CloseAccount(Bank bank)
@@ -142,6 +164,6 @@ namespace HomeWork7_2
             int numberAccount = Convert.ToInt32(Console.ReadLine());
 
             bank.WithdrawMoneyOperation(numberAccount, sum);
-        }
+        }         
     }
 }

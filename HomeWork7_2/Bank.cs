@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork7_2
 {
@@ -40,6 +37,10 @@ namespace HomeWork7_2
         public void ListOfBankEmployees()
         {
             Console.WriteLine($"Список сотрудников :");
+            if (Employees.Count == 0)
+            {
+                Console.WriteLine("Список сотрудников пуст!");
+            }
             foreach (Employee listEmployees in Employees)
             {
                 if (listEmployees.AllowedOperationTypes.HasFlag(OperationTypes.OpenAccount) || listEmployees.AllowedOperationTypes.HasFlag(OperationTypes.CloseAccount))
@@ -65,14 +66,6 @@ namespace HomeWork7_2
             return newAccount;
         }
 
-        //public void CheckOperationPermission(OperationTypes operationTypes)
-        //{
-        //    if (!CurrentEmployee.AllowedOperationTypes.HasFlag(operationTypes))
-        //    {
-        //        Console.WriteLine("У текущего сотрудника нет прав доступа на операцию");
-        //    }
-        //}
-
         public void PutMoneyOperation(int id, decimal deltaMoney)
         {
             Account accounts = FindAccount(id);
@@ -80,8 +73,6 @@ namespace HomeWork7_2
             {
                 Console.WriteLine("Счет не найден!");
             }
-
-            //CheckOperationPermission(OperationTypes.PutMoney);
 
             PutMoneyOperation putMoneyOperation = new PutMoneyOperation(CurrentEmployee, accounts, deltaMoney);
 
@@ -97,8 +88,6 @@ namespace HomeWork7_2
                 Console.WriteLine("Счет не найден!");
             }
 
-            //CheckOperationPermission(OperationTypes.WithdrawMoney);
-
             WithdrawMoneyOperation withdrawMoneyOperation = new WithdrawMoneyOperation(CurrentEmployee, accounts, deltaMoney);
 
             withdrawMoneyOperation.Apply();
@@ -107,11 +96,13 @@ namespace HomeWork7_2
 
         public void AddAccount(Client ownerClient)
         {
-            if (ownerClient == CurrentClient)
+            if (ownerClient == null)
             {
-                return;
+                Account newAccount = new Account(CurrentClient, Accounts.Count);
+                newAccount.Open();
+                Accounts.Add(newAccount);
             }
-            ////CheckOperationPermission(OperationTypes.OpenAccount);    
+            
             CreateAccount(ownerClient);
         }
 
@@ -124,8 +115,7 @@ namespace HomeWork7_2
                 Console.WriteLine("Счет не найден");
             }
 
-            //CheckOperationPermission(OperationTypes.CloseAccount);
-
+            account.Close();
             Accounts.Remove(account);
         }
 
@@ -136,6 +126,7 @@ namespace HomeWork7_2
                 if (listAccount.NumberAccount == id)
                     return listAccount;
             }
+
             return null;
         }
 
@@ -163,7 +154,66 @@ namespace HomeWork7_2
                     return listClient;
                 }
             }
+
             return null;
+        }
+
+        public void FindEmployeeByName()
+        {
+            Console.Write("Введите имя сотрудника : ");
+            string employeeName = Console.ReadLine();
+            bool isEmployeeFound = false;
+            foreach (Employee employee in Employees)
+            {
+                if (employee.Name == employeeName)
+                {
+                    Console.WriteLine("Сотрудник " + employee.Name + " найден!");
+                    isEmployeeFound = true;
+                    break;
+                }
+            }
+
+            if (!isEmployeeFound)
+            {
+                Console.WriteLine("Сотрудник " + employeeName + " не найден!");
+            }
+        }
+
+        public void FindCustomerByName()
+        {
+            Console.Write("Введите имя клиента : ");
+            string clientName = Console.ReadLine();
+            bool isCustomerFound = false;
+            foreach (Client client in Clients)
+            {
+                if (client.Name == clientName)
+                {
+                    Console.WriteLine($"Клиент {client.Name} найден!");
+                    isCustomerFound = true;
+                    break;
+                }
+            }
+
+            if (!isCustomerFound)
+            {
+                Console.WriteLine($"Клиент {clientName} не найден!");
+            }
+        }
+
+        public void PrintAllClients()
+        {
+            if (Clients.Count == 0)
+            {
+                Console.WriteLine("Ни одного клиента не найдено!");
+            }
+            else
+            {
+                Console.WriteLine("Список наших клиентов : ");
+                foreach (Client clientName in Clients)
+                {
+                    Console.WriteLine(clientName.Name);
+                }
+            }
         }
     }
 }
