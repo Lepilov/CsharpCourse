@@ -1,0 +1,41 @@
+﻿<Window x:Class="PharmacyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PharmacyApp"
+        mc:Ignorable="d"
+        Title="Аптека" Height="350" Width="525" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="210"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="Название лекарства : "/>
+            <TextBox Name="tbSearchByNameOfMedicine" Width="200" Height="20" Margin="1" TextChanged="tbSearchByNameOfMedicine_TextChanged"/>
+            <Label Content="Показания к применению : "/>
+            <TextBox Name="tbSearchBySymptomsOfTheDisease" Width="200" Height="20" Margin="1" TextChanged="tbSearchByIndicationForUse_TextChanged"/>
+        </StackPanel>
+        <GroupBox Header="Список лекарств" Grid.Column="0" Grid.Row="1">
+            <DataGrid Name="dgMedicine" AutoGenerateColumns="False" Margin="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding NameOfTheMedicine}" Width="2*"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding PriceOfMedicine}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox Header="Аналоги" Grid.Column="1" Grid.Row="1">
+            <DataGrid Name="dgAnalogMedicine" AutoGenerateColumns="False" Margin="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding NameOfTheMedicine}" Width="2*"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding PriceOfMedicine}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</Window>
