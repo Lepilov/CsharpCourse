@@ -31,12 +31,13 @@ namespace HomeWork2_4
     {
         public static int Age(this DateTime date)
         {
-            return DateTime.Today.Year - date.Year;
+            int age = DateTime.Today.Year - date.Year;
+            return (date.AddDays(age) < DateTime.Today) ? age : age--;
         }
 
         public static IEnumerable<string> DateString(this IEnumerable<DateTime> dates)
         {
-            return dates.Select(date=>($"{date.Day}.{date.Month}.{date.Year}"));
+            return dates.Select(date => date.ToString("D"));
         }
     }
 }
