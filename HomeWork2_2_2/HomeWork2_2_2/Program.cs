@@ -1,4 +1,5 @@
 ﻿using System;
+using LibraryMathParser;
 
 namespace HomeWork2_2_2
 {

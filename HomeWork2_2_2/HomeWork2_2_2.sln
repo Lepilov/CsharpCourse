@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork2_2_2", "HomeWork2_2_2\HomeWork2_2_2.csproj", "{864D97ED-64B5-475B-8EB1-7F2FF630C476}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryMathParser", "LibraryMathParser\LibraryMathParser.csproj", "{47919E7B-E599-436F-BF91-41D40E8D3008}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{864D97ED-64B5-475B-8EB1-7F2FF630C476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{864D97ED-64B5-475B-8EB1-7F2FF630C476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{864D97ED-64B5-475B-8EB1-7F2FF630C476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47919E7B-E599-436F-BF91-41D40E8D3008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47919E7B-E599-436F-BF91-41D40E8D3008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47919E7B-E599-436F-BF91-41D40E8D3008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47919E7B-E599-436F-BF91-41D40E8D3008}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
