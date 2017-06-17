@@ -10,11 +10,7 @@ namespace Pattern
     {
         static void Main(string[] args)
         {
-            Creator creator = null;
-            Shape shape = null;
 
-            creator = new TriangleCreator();
-            shape = creator.FactoryMethod();
         }
     }
 }

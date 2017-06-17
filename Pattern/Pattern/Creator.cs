@@ -8,7 +8,13 @@ namespace Pattern
 {
     abstract class Creator
     {
-        Shape shape;
+        private Shape shape;
+
+        public Creator(Shape shape)
+        {
+            this.shape = shape;
+        }
+
         public abstract Shape FactoryMethod();
     }
 }

@@ -8,9 +8,14 @@ namespace Pattern
 {
     class TriangleCreator : Creator
     {
+        public TriangleCreator(Shape shape) 
+            : base(shape)
+        {
+        }
+
         public override Shape FactoryMethod()
         {
-            return new RightTriangle();
+            return new RightTriangle(5, 5, ConsoleColor.Blue);
         }
     }
 }
