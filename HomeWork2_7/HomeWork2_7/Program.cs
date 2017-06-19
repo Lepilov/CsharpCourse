@@ -10,14 +10,12 @@ namespace HomeWork2_7
     {
         static void Main(string[] args)
         {
-            Fact(3);
-            Fact(4);
+            //Fact(3);
+            //Fact(4);
 
-            ReverseStr("one_two,_.three!");
+            //ReverseStr("one_two,_.three!");
 
-            //var numstr1 = "11111111119";
-            //var numstr2 = "1";
-            //Console.WriteLine(BigNumber(numstr1, numstr2));
+            SumString();
         }
 
         public static void Fact(int n)
@@ -53,36 +51,15 @@ namespace HomeWork2_7
             Console.WriteLine(resultstr.ToString());
         }
 
-        //public static string BigNumber(string str1, string str2)
-        //{
-        //    StringBuilder resultstr = new StringBuilder();
-        //    int residual = 0;
-        //    string bigstr1, bigstr2;
-        //    if (str1.Length >= str2.Length)
-        //    {
-        //        bigstr1 = str1;
-        //        bigstr2 = str2;
-        //    }
-        //    else
-        //    {
-        //        bigstr1 = str2;
-        //        bigstr2 = str1;
-        //    }
+        public static void SumString()
+        {
+            Console.Write($"Введите первое число : ");
+            string number1 = Console.ReadLine();
 
-        //    for (int i = bigstr1.Length - 1; i >= 0; i--)
-        //    {
-        //        for (int j = bigstr2.Length; j >= 0; j--)
-        //        {
-        //            int num1, num2;
-        //            int.TryParse(str1[i].ToString(), out num1);
-        //            int.TryParse(str2[j].ToString(), out num2);
+            Console.Write($"Введите второе число : ");
+            string number2 = Console.ReadLine();
 
-        //            var bigSumNumbers = num1 + num2 + residual;
-        //            residual = (int)bigSumNumbers / 10;
-        //            resultstr.Append(bigSumNumbers % 10);
-        //        }
-        //    }
-        //    return new string(resultstr.ToString().ToArray());
-        //}
+            Console.WriteLine($"Результат: {decimal.Parse(number1) + decimal.Parse(number2)}");
+        }
     }
 }
