@@ -23,12 +23,12 @@ namespace Pattern
             return instance;
         }
 
-        public static void Draw(IEnumerable<Shape> shapes)
+        public static void Draw(IEnumerable<Shape> s)
         {
             while (true)
             {
                 Clear();
-                foreach (var shape in shapes)
+                foreach (var shape in s)
                 {
                     shape.Draw(Ticks);
                 }

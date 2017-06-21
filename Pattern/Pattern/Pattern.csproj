@@ -42,13 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Creator.cs" />
+    <Compile Include="MoveRectangle.cs" />
+    <Compile Include="MoveableShapeFabric.cs" />
+    <Compile Include="MoveTriangle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rectangle.cs" />
+    <Compile Include="ShapeFabricFabric.cs" />
     <Compile Include="SingletonEngine2D.cs" />
-    <Compile Include="TriangleCreator.cs" />
     <Compile Include="RightTriangle.cs" />
     <Compile Include="Shape.cs" />
+    <Compile Include="StaticShapeFabric.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
