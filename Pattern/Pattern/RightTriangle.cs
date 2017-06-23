@@ -8,13 +8,15 @@ namespace Pattern
 {
     class RightTriangle : Shape
     {
+        Decorator d = new Decorator();
         public RightTriangle(int x, int y, ConsoleColor color = ConsoleColor.White)
             : base(x, y, color)
         {
         }
 
         public override void Draw(int ticks)
-        {
+        {          
+            d.Message();
             for (int i = 1; i <= 5; i++)
             {
                 for (int j = 1; j <= 5; j++)
