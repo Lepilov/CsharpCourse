@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HomeWork9.Document>
+
+@{
+    ViewBag.Title = "My ASP.NET Web BM25 Application";
+}
+
+<h2>My ASP.NET Web BM25 Application</h2>
+
+<p>
+    @Html.ActionLink("Создать новый документ", "Create")
+</p>
+<form method="get">
+    <input type="text" name="searchstring" />
+    <input type="submit" value="Поиск" /> 
+</form>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+            @ViewBag.Message
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Text)*@
+            @MvcHtmlString.Create(item.Text);
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Детали", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
