@@ -12,8 +12,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             string s1 = "one two free";
-            string s2 = "two";
-            string words = s1.Split(' ').OrderByDescending(x => x.Length).FirstOrDefault();
+            string s2 = "free";
             Console.WriteLine(Array.FindIndex(s1.Split(' '), x => x.Equals(s2)));
         }
     }
